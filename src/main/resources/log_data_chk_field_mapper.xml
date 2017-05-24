@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 该配置文件为将kafka消息映射为数据库字段配置文件 -->
+<!-- 
+	handleType:处理消息的方式，必填，取值有JSON(将消息转换为json对象来处理),SPLIT（将消息以指定分隔符来处理）
+	splitChar：分隔符，该属性只有当 handleType 为 SPLIT 时才有意义
+	isUnicode：分隔符是否是unicode编码，取值有TRUE,FALSE,该属性只有当 handleType 为 SPLIT 时才有意义
+ -->
+<fieldMapperConfiguration tableName="log_data_chk" handleType="SPLIT" splitChar="\u007c" isUnicode="TRUE">
+	
+	<!-- 当消息为分隔符连接时，要注意field的顺序，field的顺序会作为分割后消息字段的顺序处理 -->
+	<!-- 
+		name：消息字段名，当消息为 json 格式时，name为属性的key，必填;当消息被分隔符连接时，该name仅作标志，不是必填
+		type：字段被转换的类型，取值有STRING，INTEGER，LONG，DOUBLE，FLOAT，BOOLEAN，DATE,TIMESTAMP
+		fieldName：映射的数据库字段名；
+		dateFormat：日期格式，可选，当javaType为DATE,TIMESTAMP时，需设置转换使用的格式
+	 -->
+	<field name="op_time" type="TIMESTAMP" fieldName="op_time" dateFormat="yyyyMMdd"></field>
+    <field name="prov_id" type="INTEGER" fieldName="prov_id" dateFormat=""></field>
+    <field name="out_tid" type="STRING" fieldName="out_tid" dateFormat=""></field>
+    <field name="chk_oid" type="STRING" fieldName="chk_oid" dateFormat=""></field>
+    <field name="row_seq" type="STRING" fieldName="row_seq" dateFormat=""></field>
+    <field name="col_chk_flag" type="INTEGER" fieldName="col_chk_flag" dateFormat=""></field>
+    <field name="row_chk_flag" type="INTEGER" fieldName="row_chk_flag" dateFormat=""></field>
+    <field name="row_exp_flag" type="INTEGER" fieldName="row_exp_flag" dateFormat=""></field>
+    <field name="oper_time" type="TIMESTAMP" fieldName="oper_time" dateFormat="yyyyMMddHHmmssS"></field>
+	<field name="insert_time" type="TIMESTAMP" fieldName="insert_time" dateFormat="yyyyMMdd HH:mm:ss:S"></field>
+	
+	
+</fieldMapperConfiguration>
